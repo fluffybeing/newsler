@@ -1,0 +1,35 @@
+{
+	"allowed_domains" : ["cnbc.com"],
+	"start_urls": [
+		"http://data.cnbc.com/quotes/IBM"
+	],
+	"rules": [
+		{
+			"allow": [".*/quotes/IBM/.*/"],
+			"follow": true
+		},
+		{
+			"allow": ["/id/\\d+"],
+			"follow": false,
+			"use_content": true
+		},
+		{
+			"allow": ["/gallery.*"],
+			"restrict_xpaths":["//div[@class='promo']"],
+			"follow":false,
+			"use_content": true
+		}
+	],
+	"paths": {
+		"title" : ["//title/text()"],
+        "date" : ["//div[@class='datestamp']/text()"],
+        "text" : [
+        	"//div[@id='article_body']",
+        	"//div[@id='story_display']",
+        	"//div[@id='story_content'][descendant-or-self]",
+        	"//div[@class='group-container'][descendant-or-self]",
+        	"//div[@class='content'][descendant-or-self]"
+        ]
+	},
+	"source": "CNBC"
+}

@@ -1,0 +1,6 @@
+*~
+/output/*
+garbage.txt
+*.pyc
+/.idea/
+/output/

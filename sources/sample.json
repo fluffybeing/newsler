@@ -1,0 +1,36 @@
+{
+	"allowed_domains" : ["seekingalpha.com"],
+	"start_urls": [
+		"http://seekingalpha.com/symbol/intu",
+		"http://seekingalpha.com/account/ajax_headlines_content?type=in_focus_articles&page=1&slugs=intu&is_symbol_page=true"
+	],
+	"rules": [
+		{
+			"allow": ["/symbol/intu"],
+			"follow": true
+		},
+		{
+			"allow": ["/account/ajax_headlines_content.*page=\\d+.*"],
+			"follow": true
+		},
+		{
+			"allow": ["/news-article.*intuit.*", "/article.*intuit.*"],
+			"follow": true,
+			"use_content": true
+		},
+		{
+			"allow": ["/symbol/intu.*"],
+			"deny": ["/author.*", "/user.*", "/currents.*", "/instablog.*"],
+			"restrict_xpaths": ["//div[@id='main_container']", "//div[@class='symbol_articles_list mini_category']"],
+			"follow": false,
+			"use_content": true
+		}
+	],
+	"paths": {
+		"title" : ["//title/text()"],
+        "date" : ["//div[@class='datestamp']/text()", "//div[@class='article_info_pos']/span/text()"],
+        "text" : ["//div[@id='article_content']", "//div[@id='article_body']"]
+	},
+	"source": "Seeking Alpha",
+    "company": "Intuit"
+}
