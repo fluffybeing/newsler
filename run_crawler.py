@@ -1,6 +1,6 @@
 # #
-# # NOT TO BE USED !!
-# #
+# # NOT TO BE USED NOW!!
+# # This file can run your several spiders one by one.
 #
 #
 # import os
