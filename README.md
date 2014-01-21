@@ -12,7 +12,7 @@ Refer to sample.json which has seekingalpha configuration for INTUIT company.
   <li> If it matches it will accept the link for either parsing, following or both. </li>
   <li> Paths define the XPATHs to the different fields of the pages to the parsed. As in sample.json, we have paths to Title, Date, Text. </li>
   <li> Once the json file for source setting is done, run the following in the terminal: </li>
-   <code>$ scrapy crawl NewsSpider -a src_json=sources/<source_json_name </code>
+   <code>$ scrapy crawl NewsSpider -a src_json=sources/<source_json_name> </code>
 
   <li> Replace source_json_name with the given name to the json file like sample.json </li>
   <li> To run the crawler on a list of files: </li>
