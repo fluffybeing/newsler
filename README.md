@@ -16,7 +16,7 @@ Refer to sample.json which has seekingalpha configuration for INTUIT company.
 
   <li> Replace source_json_name with the given name to the json file like sample.json </li>
   <li> To run the crawler on a list of files: </li>
-   <code> $ bash runBatch.sh "<list of files>" </code> <br/>
+   <code> $ bash runBatch.sh <list of files> </code> <br/>
    <code> $ bash runBatch.sh sources/bloomberg*.json </code> will run on all settings json named with bloomberg.
 
 <li> The scrapped information will be in the MongoDB / Output JSON file. </li>
