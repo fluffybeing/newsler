@@ -17,7 +17,7 @@ Running
 -------
 * Once the json file for source setting is done, run the following in the terminal:
   ```bash
-    $ scrapy crawl NewsSpider -a src_json=sources/<source_json_name> </code>
+  $ scrapy crawl NewsSpider -a src_json=sources/<source_json_name> </code>
   ```
 * Replace source_json_name with the given name to the json file like sample.json
 
