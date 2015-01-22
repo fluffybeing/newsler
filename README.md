@@ -2,6 +2,12 @@ Financial News Crawler
 ================================
 This is a generic news crawler built on the top of Scrapy framework.
 
+* This implementation is based on having same spider with different different rules. So to achieve this I have made spider.py which takes rules from the json file.
+
+* Another way to implement this is having multiple spiders for different sites and run these spiders simulatneously.
+
+I don't know which one is better but I wanted to get same information from every sites and so I followed the first principle for crawling.
+
 Installation
 -------------
 Try to create a seperate virtual environment
@@ -24,8 +30,11 @@ Setup Process
   If it matches it will accept the link for either parsing, following or both.
 * Paths define the XPATHs to the different fields of the pages to the parsed. As in sample.json, we have paths to Title, Date, Text.
 
+
 Sample Rule in JSON
 -------------------
+* Sample rule file for several websites for crawling has been provided in the source folder.
+
 ```json
 {
   "allowed_domains" : ["seekingalpha.com"],
