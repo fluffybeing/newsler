@@ -2,6 +2,17 @@ Financial News Crawler
 ================================
 This is a generic news crawler built on the top of Scrapy framework.
 
+Installation
+-------------
+Try to create a seperate virtual environment
+
+```bash
+  $ pip install virtualenv         # look for documentation on setting up virtual environment
+  $ pip install virtualenvwrapper  # setup the PATH variable
+  $ mkvirtualenv crawler
+  (cralwer) $ pip install -r requirements.txt
+```
+
 
 Setup Process
 ---------------------
@@ -16,8 +27,9 @@ Refer to sample.json which has seekingalpha configuration for INTUIT company.
 Running
 -------
 * Once the json file for source setting is done, run the following in the terminal:
+
   ```bash
-  $ scrapy crawl NewsSpider -a src_json=sources/<source_json_name> </code>
+  $ scrapy crawl NewsSpider -a src_json=sources/<source_json_name>
   ```
 * Replace source_json_name with the given name to the json file like sample.json
 
