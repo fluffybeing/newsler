@@ -32,6 +32,8 @@ Running
   $ scrapy crawl NewsSpider -a src_json=sources/<source_json_name>
   ```
 * Replace source_json_name with the given name to the json file like sample.json
+* Every json file has a rules for scrapping data. It is because everysites have a different DOM to make it
+  more generic one can use Goose library. I have added one sample spider (gooseSpider.py) in spider folder.
 
 To run the crawler on a list of files
 -------------------------------------
