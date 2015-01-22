@@ -1,0 +1,24 @@
+{
+	"allowed_domains" : ["bloomberg.com"],
+	"start_urls": [
+		"http://www.bloomberg.com/quote/COMPID/news_data/company_news"
+	],
+	"rules": [
+		{
+			"allow": ["http://www.bloomberg.com/quote/COMPID/news_data/company_news/\\d+"],
+			"follow": true
+		},
+		{
+			"allow": ["http://www.bloomberg.com/news/\\d+.*"],
+            "follow": false,
+			"use_content": true
+		}
+	],
+	"paths": {
+		"title" : ["//title/text()"],
+        "date" : ["//span[@class='datestamp']/text()"],
+        "text" : ["//div[@id='story_display']"]
+	},
+	"source": "Bloomberg",
+	"company": "COMPNAME"
+}

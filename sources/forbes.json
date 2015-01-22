@@ -1,0 +1,20 @@
+{
+	"allowed_domains" : ["commoncrawl.org"],
+	"start_urls": [
+		"http://urlsearch.commoncrawl.org/?q=forbes.com"
+	],
+	"rules": [
+		{
+			"allow": ["\\?q=.*\\&start=\\d+"],
+			"follow": true,
+			"use_content": true
+		}
+	],
+	"paths": {
+		"title" : ["//title/text()"],
+        "date" : ["//div[@id='count']/text()"],
+        "text" : ["//div[@class='row results']"]
+	},
+	"source": "Common Crawl",
+	"company": "Forbes"
+}
