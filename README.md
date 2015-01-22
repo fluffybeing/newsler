@@ -36,12 +36,15 @@ Running
 To run the crawler on a list of files
 -------------------------------------
   ```bash
-  $ bash runBatch.sh list of files </code> <br/>
-  $ bash runBatch.sh sources/bloomberg*.json </code> will run on all settings json named with bloomberg.
+  $ bash runBatch.sh list of files
+  $ bash runBatch.sh sources/bloomberg*.json
   ```
+
+  * This will run on all settings json named with bloomberg.
+
 Storage
 -------
-* The scrapped information will be in the MongoDB / Output JSON file. </li>
+* The scrapped information will be in the MongoDB / Output JSON file.
 * for any queries related to the project you can ping me on twitter <a href="https://twitter.com/RahulRRixe"> RahulRRixe </a>
 
 ## Cheers!
