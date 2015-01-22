@@ -15,8 +15,16 @@ Try to create a seperate virtual environment
 ```bash
   $ pip install virtualenv         # look for documentation on setting up virtual environment
   $ pip install virtualenvwrapper  # setup the PATH variable
+
+  # open ~/.bashrc or ~/.profile or ~/.bash_profile and add this
+  export WORKON_HOME=$HOME/.virtualenvs
+  export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+  export PIP_VIRTUALENV_BASE=$WORKON_HOME
+  source /usr/local/bin/virtualenvwrapper.sh # this might be different of other OS
+
+  # now mkvirtualenv command will work and then type
   $ mkvirtualenv crawler
-  (cralwer) $ pip install -r requirements.txt
+  (crawler) $ pip install -r requirements.txt
 ```
 
 
