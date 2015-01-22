@@ -35,6 +35,8 @@ Sample Rule in JSON
 -------------------
 * Sample rule file for several websites for crawling has been provided in the source folder.
 
+Also look for scrapy docs for writing rules for link extractions to get more clear picture of what is happening here.
+
 ```json
 {
   "allowed_domains" : ["seekingalpha.com"],
