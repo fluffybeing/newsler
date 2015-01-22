@@ -1,0 +1,75 @@
+from __future__ import absolute_import
+from scrapy.contrib.spiders import CrawlSpider, Rule
+from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
+from scrapy.selector import HtmlXPathSelector
+from newscrawler.items import NewsItem as GooseItem
+
+from goose import Goose
+
+
+class NewsSpider(CrawlSpider):
+    name = "goosespider"
+    rules = []
+
+    def __init__(self, **kw):
+        src_json = kw.get('src_json') or 'sources/sample.json'
+
+        # Dynamic loading from specified file
+        self.MY_SETTINGS = json.load(open(src_json))
+
+        self.allowed_domains = self.MY_SETTINGS['allowed_domains']
+        self.start_urls = self.MY_SETTINGS["start_urls"]
+        self.CONT_PATHS = self.MY_SETTINGS["paths"]
+        for rule in self.MY_SETTINGS["rules"]:
+            allow_r = ()
+            if "allow" in rule.keys():
+                allow_r = [a for a in rule["allow"]]
+
+            deny_r = ()
+            if "deny" in rule.keys():
+                deny_r = [d for d in rule["deny"]]
+
+            restrict_xpaths_r = ()
+            if "restrict_xpaths" in rule.keys():
+                restrict_xpaths_r = [rx for rx in rule["restrict_xpaths"]]
+
+            NewsSpider.rules.append(Rule(
+                SgmlLinkExtractor(
+                    allow=allow_r,
+                    deny=deny_r,
+                    restrict_xpaths=restrict_xpaths_r,
+                ),
+                follow=rule["follow"],
+                callback='parse_item' if ("use_content" in rule.keys()) else None
+            ))
+
+        self.cookies_seen = set()
+
+        fname = 'output/' + (src_json.split('/')[1].split('.')[0]) + "_visited.txt"
+        try:
+            f_urls = open(fname, 'r')
+        except IOError:
+            self.OLD_URLS = []
+        else:
+            self.OLD_URLS = [url.strip() for url in f_urls.readlines()]
+            f_urls.close()
+        finally:
+            self.URLS_FILE = open(fname, 'a')
+
+        super(NewsSpider, self).__init__(**kw)
+
+    def parse_item(self, response):
+        """ Extract title, link, date, desc, keywords and the html text of a blogpost,
+        using XPath selectors
+        """
+        hxs = HtmlXPathSelector(response)
+        item = GooseItem()
+        g = Goose().extract(raw_html=response.body)
+
+        item['link'] = response.url
+        item['title'] = g.title
+        item['date'] = g.publish_date
+        item['content'] = g.cleaned_text
+
+        return item
+

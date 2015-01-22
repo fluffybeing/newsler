@@ -8,9 +8,24 @@ from scrapy.xlib.pydispatch import dispatcher
 from scrapy import signals
 from scrapy.contrib.exporter import JsonItemExporter
 from scrapy import log
+from scrapy.exceptions import DropItem
 
 import time
 
+# ignore visited sites
+class DuplicatesPipeline(object):
+
+    def __init__(self):
+        self.urls_seen = set()
+
+    def process_item(self, item, spider):
+        if item['url'] in self.urls_seen:
+            raise DropItem("Duplicate item found: %s" % item)
+        else:
+            self.urls_seen.add(item['url'])
+            return item
+
+# export data into json
 class JsonExportPipeline(object):
 
     def __init__(self):
