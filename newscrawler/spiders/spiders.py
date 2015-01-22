@@ -2,6 +2,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from scrapy import log
+import os
 
 from newscrawler.items import NewsItem
 
@@ -64,18 +65,21 @@ class NewsSpider(CrawlSpider):
 
         self.cookies_seen = set()
 
-        fname = 'output/' + (src_json.split('/')[1].split('.')[0]) + "_visited.txt"
-        try:
-            f_urls = open(fname, 'r')
-        except IOError:
-            self.OLD_URLS = []
-        else:
-            self.OLD_URLS = [url.strip() for url in f_urls.readlines()]
-            f_urls.close()
-        finally:
-            self.URLS_FILE = open(fname, 'a')
+        if not os.path.exists("output/"):
+            os.makedirs("output/")
+            fname = 'output/' + (src_json.split('/')[1].split('.')[0]) + "_visited.txt"
 
-        super(NewsSpider, self).__init__(**kw)
+            try:
+                f_urls = open(fname, 'r')
+            except IOError:
+                self.OLD_URLS = []
+            else:
+                self.OLD_URLS = [url.strip() for url in f_urls.readlines()]
+                f_urls.close()
+            finally:
+                self.URLS_FILE = open(fname, 'a')
+
+            super(NewsSpider, self).__init__(**kw)
 
     def parse_item(self, response):
 

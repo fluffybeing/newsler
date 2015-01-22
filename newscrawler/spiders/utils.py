@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+import BeautifulSoup as bs4
 import re
 
 def clean_html(url, html_doc):

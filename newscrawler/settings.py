@@ -14,7 +14,7 @@ SPIDER_MODULES = ['newscrawler.spiders']
 NEWSPIDER_MODULE = 'newscrawler.spiders'
 
 LOG_LEVEL = "INFO"
-LOG_FILE = environ['HOME'] + "/IALogs/newscrawler_" + datetime.now().strftime("%Y%m%d%H%M%S") + ".log"
+#LOG_FILE = environ['HOME'] + "/IALogs/newscrawler_" + datetime.now().strftime("%Y%m%d%H%M%S") + ".log"
 
 SPIDER_MIDDLEWARES = {
     # 'newscrawler.middleware.IgnoreVisitedItems': 500,
@@ -23,14 +23,14 @@ SPIDER_MIDDLEWARES = {
 
 ITEM_PIPELINES = {
     # 'newscrawler.pipelines.JsonExportPipeline':500,
-    'scrapy_mongodb.MongoDBPipeline': 200,
+    'newscrawler.pipelines.MongoDBPipeline': 200,
     'newscrawler.pipelines.DuplicatesPipeline': 100,
 }
 
 DOWNLOAD_DELAY = 0.25 # To avoid getting banned
 
-# MongoDB setup
-MONGODB_HOST = 'localhost'
-MONGODB_POST = 27017
-MONGODB_DATABASE = 'scrapy'
-MONGODB_COLLECTION = 'news'
+#MongoDB settings
+MONGODB_SERVER = "localhost"
+MONGODB_PORT = 27017
+MONGODB_DB = "scrapy"
+MONGODB_COLLECTION = "articles"
